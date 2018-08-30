@@ -21,7 +21,9 @@
 
 		var myGamePiece;
 		var arrows=[];
-		
+		var balloons=[];
+		var staticballoons=[];
+
 		var sound1= new Audio("audio shoot/shoot.wav");
 		
 		function startGame() {
@@ -37,7 +39,7 @@
 				this.canvas.height = 700;
 				this.context = this.canvas.getContext("2d");
 				document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-				
+				this.frameNo=0;
 				this.interval = setInterval(updateGameArea, 20);
 
 				window.addEventListener('keydown', function (e) { myGameArea.key = e.keyCode;})
@@ -90,15 +92,15 @@
 			}
 			
 		}
-		var  time=0,run=1,delay=0,arrowspeed=7;
+		var  time=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2;
 		function updateGameArea() 
 		{
-			var ax,ay;
+			var x,y,ax,ay;
 
 			myGameArea.clear();
 			myGamePiece.newPos();       
 			myGamePiece.update();
-				
+
 			myGamePiece.speedX = 0;
 			myGamePiece.speedY = 0;
 
@@ -115,7 +117,7 @@
 
 				delay=time;
 			}  
-     
+
 			if (myGameArea.key == 38) {
 				if (myGamePiece.y <1)
 				{
@@ -137,7 +139,7 @@
 					}
 					time++;
 					
-                  
+
 					for (i = 0; i < arrows.length; i++) {
 						{
 							arrows[i].x += arrowspeed;
@@ -149,10 +151,34 @@
 					{
 						myGamePiece.img1="images bow/bow3.png";
 					}
-					
+					myGameArea.frameNo+=1;
+
+					if(myGameArea.frameNo==1||everyinterval(150))
+					{
+						t=Math.random()*1000;
+
+						while (( t<600)||(t>900)){
+							t=Math.random()*1000;
+
+						} console.log(t);
+
+						y=myGameArea.canvas.height;
+						x=t;
+						balloons.push(new component(100,80,"images balloons/balloon.png",x,y,"image"));
+					}
+
+					for(i=0;i<balloons.length;i++)
+					{
+						balloons[i].speedY=balloonspeed;
+						balloons[i].newPos();
+						balloons[i].update();
+					}
 
 				}
-				
+				function everyinterval(n) {
+					if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+					return false;
+				}
 			</script>
 		</body>
 		</html>

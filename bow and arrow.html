@@ -24,11 +24,15 @@
 		var balloons=[];
 		var staticballoons=[];
         var myScore;
+        var finalScore;
+		var gameover;
 		var sound1= new Audio("audio/shoot.wav");
 		var sound2=new Audio("audio/killing sound.wav");
 		function startGame() {
 			myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 			myScore = new component("30px", "serif", "black", 820, 40, "text");
+			finalScore = new component("40px", "serif", "white", 380, 360, "text");
+			gameover= new component("45px", "serif", "red", 400, 300, "text");
 			myGameArea.start();
 		}
 
@@ -114,7 +118,7 @@
 			}
 			
 		}
-		var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1;
+		var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,pos=620,lives=8;
 		function updateGameArea() 
 		{
 			var x,y,ax,ay;
@@ -122,7 +126,10 @@
 			myGameArea.clear();
 			myGamePiece.newPos();       
 			myGamePiece.update();
-
+			for(i=0;i<staticballoons.length;i++)
+					{
+						staticballoons[i].update();
+					}
 			myGamePiece.speedX = 0;
 			myGamePiece.speedY = 0;
 
@@ -150,7 +157,7 @@
 					myGamePiece.speedY = -5; }
 				}
 				if (myGameArea.key == 40) {
-					if (myGamePiece.y >= myGameArea.canvas.height -myGamePiece.height)
+					if (myGamePiece.y >= myGameArea.canvas.height -(myGamePiece.height+balloon_miss*80))
 
 					{
 						myGamePiece.speedY=0;
@@ -224,6 +231,33 @@
 
 						}
 
+					}
+						for ( i = 0; i < balloons.length; i++) {
+						
+						if(balloons[i].img1=="images balloons/balloon.png")
+						{
+							if(balloons[i].y==-80)
+							{
+								balloon_miss+=1;
+								console.log(balloon_miss);
+								if(myGamePiece.y>=myGameArea.canvas.height-balloon_miss*100)
+								{
+									myGamePiece.y=myGameArea.canvas.height-myGamePiece.height-balloon_miss*80;
+								}
+								 staticballoons.push(new component(100,80,"images balloons/balloon.png",-15,pos,"image"));
+								 pos+=-80
+							     lives--;
+							}
+						}
+
+					} 
+					if(balloon_miss==8)
+					{
+						gameover.text="GAME OVER ";
+					gameover.update();
+					finalScore.text="FINAL SCORE: " +myGameArea.kill;
+					finalScore.update();
+						myGameArea.stop();
 					}
 					myScore.text="SCORE: " +myGameArea.kill;
 					myScore.update();

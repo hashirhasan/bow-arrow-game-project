@@ -18,8 +18,7 @@
 </head>
 <body onload="startGame()">
 	<script>
-
-		var myGamePiece;
+        var myGamePiece;
 		var arrows=[];
 		var balloons=[];
 		var staticballoons=[];
@@ -29,6 +28,8 @@
 		var gameover;
 		var sound1= new Audio("audio/shoot.wav");
 		var sound2=new Audio("audio/killing sound.wav");
+		var sound3= new Audio("audio/game over sound.wav");
+
 		function startGame() {
 			myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 			myScore = new component("30px", "serif", "black", 820, 40, "text");
@@ -36,6 +37,7 @@
 			finalScore = new component("40px", "serif", "white", 380, 360, "text");
 			gameover= new component("45px", "serif", "red", 400, 300, "text");
 			myGameArea.start();
+
 		}
 
 		var myGameArea = {
@@ -253,8 +255,10 @@
 						}
 
 					} 
+
 					if(balloon_miss==8)
 					{
+						sound3.play();
 						gameover.text="GAME OVER ";
 						gameover.update();
 						finalScore.text="FINAL SCORE: " +myGameArea.kill;

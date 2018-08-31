@@ -160,17 +160,19 @@
 					}
 					time++;
 					time1++;
-					if(time==1500)
-					{
-						balloonspeed+=-1;
-						time=0;
-						
-					}
-					if(time1==2100)
+
+				    if(time1==2100)
 					{
 						arrowspeed+=1;
 						time1=0;
+					}  
+
+					if(time==1500)
+					{
+						balloonspeed+=-1;
+						time=0;	
 					}
+				
 
 					for (i = 0; i < arrows.length; i++) {
 						{

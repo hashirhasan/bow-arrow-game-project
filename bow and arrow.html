@@ -24,8 +24,8 @@
 		var balloons=[];
 		var staticballoons=[];
 
-		var sound1= new Audio("audio shoot/shoot.wav");
-		
+		var sound1= new Audio("audio/shoot.wav");
+		var sound2=new Audio("audio/killing sound.wav");
 		function startGame() {
 			myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 			
@@ -203,6 +203,7 @@
 								balloons[i].img1="images/ghosty.png";
 								balloons[i].width=60;
 								balloons[i].height=60;
+								sound2.play();
 								myGameArea.kill+=points;
 								arrows[j].x=1200;
 							} 

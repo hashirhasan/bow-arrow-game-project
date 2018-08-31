@@ -90,6 +90,27 @@
 				this.y += this.speedY;
 
 			}
+
+			this.crashWith = function(otherobj) 
+			{
+				var myleft = this.x;
+				var myright = this.x + (this.width);
+				var mytop = this.y;
+				var mybottom = this.y + (this.height);
+				var otherleft = otherobj.x;
+				var otherright = otherobj.x + (otherobj.width);
+				var othertop = otherobj.y;
+				var otherbottom = otherobj.y + (otherobj.height);
+				var crash = true;
+				if ((mybottom < othertop) ||
+					(mytop > otherbottom) ||
+					(myright < otherleft) ||
+					(myleft > otherright)) 
+				{
+					crash = false;
+				}
+				return crash;
+			}
 			
 		}
 		var  time=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2;
@@ -172,6 +193,22 @@
 						balloons[i].speedY=balloonspeed;
 						balloons[i].newPos();
 						balloons[i].update();
+					}
+					for (i = 0; i < balloons.length; i++) 
+					{
+						for(j = 0; j < arrows.length;j++)
+						{
+							if (balloons[i].crashWith(arrows[j])) 
+							{   
+								balloons[i].img1="images/ghosty.png";
+								balloons[i].width=60;
+								balloons[i].height=60;
+								myGameArea.kill+=points;
+								arrows[j].x=1200;
+							} 
+
+						}
+
 					}
 
 				}

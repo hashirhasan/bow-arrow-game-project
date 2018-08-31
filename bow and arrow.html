@@ -25,12 +25,14 @@
 		var staticballoons=[];
         var myScore;
         var finalScore;
+        var chances;
 		var gameover;
 		var sound1= new Audio("audio/shoot.wav");
 		var sound2=new Audio("audio/killing sound.wav");
 		function startGame() {
 			myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 			myScore = new component("30px", "serif", "black", 820, 40, "text");
+			chances = new component("30px", "serif", "black", 650, 40, "text");
 			finalScore = new component("40px", "serif", "white", 380, 360, "text");
 			gameover= new component("45px", "serif", "red", 400, 300, "text");
 			myGameArea.start();
@@ -118,7 +120,7 @@
 			}
 			
 		}
-		var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,pos=620,lives=8;
+		var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,lives=8,pos=620;
 		function updateGameArea() 
 		{
 			var x,y,ax,ay;
@@ -261,7 +263,8 @@
 					}
 					myScore.text="SCORE: " +myGameArea.kill;
 					myScore.update();
-
+					chances.text="LIVES: " +lives;
+					chances.update();
 				}
 				function everyinterval(n) {
 					if ((myGameArea.frameNo / n) % 1 == 0) {return true;}

@@ -213,7 +213,6 @@ var myGamePiece;
 								else
 								{
 								   sound2.play();
-								
 									myGameArea.kill+=points;
 									arrows[j].x=1200;
 								}
@@ -253,7 +252,11 @@ var myGamePiece;
 						gameover.update();
 						finalScore.text="FINAL SCORE: " +myGameArea.kill;
 						finalScore.update();
+						for(i=0;i<2;i++);
+							if(i==2)
+							{
 						myGameArea.stop();
+							}
 					}
 					myScore.text="SCORE: " +myGameArea.kill;
 					myScore.update();

@@ -21,12 +21,14 @@ function startGame() {
 	gameover= new component("45px", "serif", "red", 400, 300, "text");
 	myGameArea.start();
 
+
 }
 
 //defining gamearea
 var myGameArea = {
 	canvas : document.createElement("canvas"),
 	start : function() {
+		
 		this. canvas.width=1000;
 		this.canvas.height = 700;
 		this.context = this.canvas.getContext("2d");

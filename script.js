@@ -1,3 +1,4 @@
+//declaration of variable
 var myGamePiece;
 var arrows=[];
 var balloons=[];
@@ -22,6 +23,7 @@ function startGame() {
 
 }
 
+//defining gamearea
 var myGameArea = {
 	canvas : document.createElement("canvas"),
 	start : function() {
@@ -45,6 +47,7 @@ var myGameArea = {
 	}
 }
 
+//defining component
 function component(width, height, color1, x, y, type) {
 	this.img1 =color1;
 	this.type = type;
@@ -105,6 +108,8 @@ function component(width, height, color1, x, y, type) {
 
 }
 var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,lives=8,pos=620,level=1;
+
+//update gamearea every 20 milliseconds
 function updateGameArea() 
 {
 	var x,y,ax,ay;
@@ -119,7 +124,10 @@ function updateGameArea()
 	myGamePiece.speedX = 0;
 	myGamePiece.speedY = 0;
 
-	if (myGameArea.key == 32) {
+//keys for the shoot ,upward and downward movements
+	if (myGameArea.key == 32) 
+	{
+		//creating arrows for shoot
 		if((time>=(delay+13)) || (run==1))
 		{
 			ax=myGamePiece.x;
@@ -177,6 +185,8 @@ function updateGameArea()
 				arrows[i].update();
 			}
 
+
+			//creating balloons and ranndom places
 			if(time==delay+3)
 			{
 				myGamePiece.img1="images bow/bow3.png";

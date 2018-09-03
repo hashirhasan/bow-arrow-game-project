@@ -91,13 +91,13 @@ function component(width, height, color1, x, y, type) {
 	this.crashWith = function(otherobj) 
 	{
 		var myleft = this.x;
-		var myright = this.x + (this.width);
+		var myright = this.x + (this.width-20);
 		var mytop = this.y;
-		var mybottom = this.y + (this.height);
+		var mybottom = this.y + (this.height-35);
 		var otherleft = otherobj.x;
 		var otherright = otherobj.x + (otherobj.width);
 		var othertop = otherobj.y;
-		var otherbottom = otherobj.y + (otherobj.height)-35;
+		var otherbottom = otherobj.y + (otherobj.height);
 		var crash = true;
 		if ((mybottom < othertop) ||
 			(mytop > otherbottom) ||

@@ -12,6 +12,7 @@ var sound1= new Audio("audio/shoot.wav");
 var sound2=new Audio("audio/killing sound.wav");
 var sound3= new Audio("audio/game over sound.wav");
 var sound4 =new Audio("audio/ho-ho-sound.wav");
+var sound5=new Audio("audio/monster echo.wav");
 function startGame() {
 	myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 	myScore = new component("34px", "serif", "black", 820, 40, "text");
@@ -20,7 +21,7 @@ function startGame() {
 	finalScore = new component("40px", "Righteous", "white", 380, 360, "text");
 	gameover= new component("45px", "serif", "red", 400, 300, "text");
 	myGameArea.start();
-
+    sound5.play();
 
 }
 

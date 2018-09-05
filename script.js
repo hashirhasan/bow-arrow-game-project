@@ -8,15 +8,19 @@ var finalScore;
 var chances;
 var gameover;
 var levels;
+var ghost;
+var lose;
 var sound1= new Audio("audio/shoot.wav");
 var sound2=new Audio("audio/killing sound.wav");
 var sound3= new Audio("audio/game over sound.wav");
 var sound4 =new Audio("audio/ho-ho-sound.wav");
-var sound5=new Audio("audio/monster echo.wav");
+//var sound5=new Audio("audio/monster echo.wav");
 function startGame() {
 	myGamePiece = new component( 80, 100,"images bow/bow3.png",-4, 500 , "image");
 	myScore = new component("34px", "serif", "black", 820, 40, "text");
-	chances = new component("30px", "sanserif", "white", 650, 40, "text");
+	ghost=new component( 60, 50,"images balloons/ghosty.png",545,10 , "image");
+	lose= new component("34px", "serif", "white", 610, 40, "text");
+	chances = new component("30px", "sanserif", "white", 665, 40, "text");
 	levels = new component("30px", "Righteous", "#80ff00", 250, 40, "text");
 	finalScore = new component("40px", "Righteous", "white", 380, 360, "text");
 	gameover= new component("45px", "serif", "red", 400, 300, "text");
@@ -110,7 +114,7 @@ function component(width, height, color1, x, y, type) {
 	}
 
 }
-var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,lives=8,pos=620,level=1;
+var  time=0,time1=0,run=1,delay=0,arrowspeed=7,run=1,balloonspeed=-2,points=1,balloon_miss=0,lives=8,pos=620,level=1,loss=3;
 
 //update gamearea every 20 milliseconds
 function updateGameArea() 
@@ -225,6 +229,7 @@ function updateGameArea()
 
 						if(balloons[i].img1=="images balloons/ghosty.png")
 						{
+							loss--;
 							arrows[j].x=1200;   
 						}
 						else
@@ -272,7 +277,7 @@ function updateGameArea()
 				chances.height="Righteous";
 			}
 
-			if(balloon_miss==8)
+			if((balloon_miss==8)||(loss==0))
 			{
 				sound3.play();
 				gameover.text="GAME OVER ";
@@ -292,6 +297,9 @@ function updateGameArea()
 				chances.update();
 				levels.text="LEVEL: " +level;
 				levels.update();
+				lose.text=":"+ loss;
+				lose.update();
+				ghost.update();
 			}
 			function everyinterval(n) {
 				if ((myGameArea.frameNo / n) % 1 == 0) {return true;}

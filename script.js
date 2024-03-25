@@ -140,7 +140,7 @@ function updateGameArea()
 			ax=myGamePiece.x;
 			ay=myGamePiece.y;
 			sound1.play();
-			arrows.push(new component(60,57,"http://pngimg.com/uploads/arrow_bow/arrow_bow_PNG1.png", ax, ay+25,"image"));
+			arrows.push(new component(60,57,"images bow/arrow1.png", ax, ay+25,"image"));
 			myGamePiece.img1="images bow/bow1.png";
 			run++; 
 		}
